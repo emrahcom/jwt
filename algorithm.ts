@@ -21,19 +21,47 @@ export type Algorithm =
   // | "ES512" //is not yet supported.
   | "none";
 
+interface HmacAlgorithm {
+  name: "HMAC";
+  hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
+}
+
+interface RsaAlgorithm {
+  name: "RSASSA-PKCS1-v1_5";
+  hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
+}
+
+interface PsAlgorithm {
+  name: "RSA-PSS";
+  hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
+  saltLength: number;
+}
+
+interface EcdsaAlgorithm {
+  name: "ECDSA";
+  hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
+  namedCurve: "P-256" | "P-384";
+}
+
+type AlgorithmDefinition =
+  | HmacAlgorithm
+  | RsaAlgorithm
+  | PsAlgorithm
+  | EcdsaAlgorithm;
+
 // Still needs an 'any' type! Does anyone have an idea?
 // https://github.com/denoland/deno/blob/main/ext/crypto/lib.deno_crypto.d.ts
 function isHashedKeyAlgorithm(
   // deno-lint-ignore no-explicit-any
   algorithm: Record<string, any>,
-): algorithm is HmacKeyAlgorithm | RsaHashedKeyAlgorithm {
+): algorithm is HmacAlgorithm | RsaAlgorithm | PsAlgorithm {
   return isString(algorithm.hash?.name);
 }
 
 function isEcKeyAlgorithm(
   // deno-lint-ignore no-explicit-any
   algorithm: Record<string, any>,
-): algorithm is EcKeyAlgorithm {
+): algorithm is EcdsaAlgorithm {
   return isString(algorithm.namedCurve);
 }
 
@@ -49,7 +77,9 @@ export function verify(alg: Algorithm, key: CryptoKey | null): boolean {
     if (keyAlgorithm.name === algAlgorithm.name) {
       if (isHashedKeyAlgorithm(keyAlgorithm)) {
         return keyAlgorithm.hash.name === algAlgorithm.hash.name;
-      } else if (isEcKeyAlgorithm(keyAlgorithm)) {
+      } else if (
+        isEcKeyAlgorithm(keyAlgorithm) && isEcKeyAlgorithm(algAlgorithm)
+      ) {
         return keyAlgorithm.namedCurve === algAlgorithm.namedCurve;
       }
     }
@@ -57,7 +87,7 @@ export function verify(alg: Algorithm, key: CryptoKey | null): boolean {
   }
 }
 
-export function getAlgorithm(alg: Algorithm) {
+export function getAlgorithm(alg: Algorithm): AlgorithmDefinition {
   switch (alg) {
     case "HS256":
       return { hash: { name: "SHA-256" }, name: "HMAC" };
