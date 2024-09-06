@@ -1,11 +1,11 @@
 {
   "name": "@emrahcom/jwt",
   "version": "0.1.0",
-  "exports": "./mod.ts",
-  "compilerOptions": {
-    "noImplicitOverride": true
+  "exports": {
+    ".": "./mod.ts",
+    "./algorithm": "./algorithm.ts"
   },
   "imports": {
-    "@std/encoding": "jsr:@std/encoding@^1.0.1"
+    "@std/encoding": "jsr:@std/encoding@^1.0.4"
   }
 }
