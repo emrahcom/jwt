@@ -1,6 +1,6 @@
 {
   "name": "@emrahcom/jwt",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "exports": {
     ".": "./mod.ts",
     "./algorithm": "./algorithm.ts"
