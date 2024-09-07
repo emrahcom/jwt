@@ -36,22 +36,34 @@ export type Algorithm =
   // | "ES512" //is not yet supported.
   | "none";
 
+/**
+ * Represents the HMAC (Hash-based Message Authentication Code) algorithm.
+ */
 export interface HmacAlgorithm {
   name: "HMAC";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
 }
 
+/**
+ * Represents the RSA (Rivest–Shamir–Adleman) encryption algorithm.
+ */
 export interface RsaAlgorithm {
   name: "RSASSA-PKCS1-v1_5";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
 }
 
+/**
+ * Represents the Probabilistic Signature Scheme (PSS) algorithm.
+ */
 export interface PsAlgorithm {
   name: "RSA-PSS";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
   saltLength: number;
 }
 
+/**
+ * Represents the ECDSA (Elliptic Curve Digital Signature Algorithm).
+ */
 export interface EcdsaAlgorithm {
   name: "ECDSA";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
