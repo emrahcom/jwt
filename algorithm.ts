@@ -1,7 +1,14 @@
 /**
+ * @module
  * This module contains types and functions related with cryptographic
  * algorithms.
- * @module
+ *
+ * @example
+ * ```ts
+ * import type { Algorithm } from "@emrahcom/jwt/algorithm";
+ *
+ * const alg = "HS256" as Algorithm;
+ * ```
  */
 
 import { isNotNull, isString } from "./util.ts";
