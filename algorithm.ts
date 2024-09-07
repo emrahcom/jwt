@@ -58,6 +58,18 @@ interface EcdsaAlgorithm {
   namedCurve: "P-256" | "P-384";
 }
 
+/**
+ * Represents the configuration parameters for supported cryptographic
+ * algorithms. This type encompasses various algorithm-specific configurations,
+ * including:
+ * - HMAC: Uses a specific hash function (SHA-256, SHA-384, SHA-512).
+ * - RSA-PSS: Includes hash function and salt length.
+ * - RSASSA-PKCS1-v1_5: Uses a specific hash function.
+ * - ECDSA: Includes hash function and named curve (P-256, P-384).
+ *
+ * Used to define and handle different types of cryptographic algorithms in the
+ * context of signing and verifying operations.
+ */
 type AlgorithmDefinition =
   | HmacAlgorithm
   | RsaAlgorithm
