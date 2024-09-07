@@ -65,6 +65,9 @@ function isEcKeyAlgorithm(
   return isString(algorithm.namedCurve);
 }
 
+/*
+ * Verifies if the algorithm of `key` matches the given algorithm `alg`
+ */
 export function verify(alg: Algorithm, key: CryptoKey | null): boolean {
   if (alg === "none") {
     if (isNotNull(key)) {
@@ -87,6 +90,9 @@ export function verify(alg: Algorithm, key: CryptoKey | null): boolean {
   }
 }
 
+/*
+ * Returns the algorithm definition for the given `alg`
+ */
 export function getAlgorithm(alg: Algorithm): AlgorithmDefinition {
   switch (alg) {
     case "HS256":
