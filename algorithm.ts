@@ -70,7 +70,7 @@ interface EcdsaAlgorithm {
  * Used to define and handle different types of cryptographic algorithms in the
  * context of signing and verifying operations.
  */
-type AlgorithmDefinition =
+export type AlgorithmDefinition =
   | HmacAlgorithm
   | RsaAlgorithm
   | PsAlgorithm
