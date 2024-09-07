@@ -1,6 +1,6 @@
 # JWT
 
-Create and verify JSON Web Tokens with Deno
+Create and verify JSON Web Tokens (JSON).
 
 ## API
 
