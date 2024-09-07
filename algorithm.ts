@@ -55,7 +55,7 @@ export interface RsaAlgorithm {
 /**
  * Represents the Probabilistic Signature Scheme (PSS) algorithm.
  */
-export interface PsAlgorithm {
+export interface PssAlgorithm {
   name: "RSA-PSS";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
   saltLength: number;
@@ -85,7 +85,7 @@ export interface EcdsaAlgorithm {
 export type AlgorithmDefinition =
   | HmacAlgorithm
   | RsaAlgorithm
-  | PsAlgorithm
+  | PssAlgorithm
   | EcdsaAlgorithm;
 
 // Still needs an 'any' type! Does anyone have an idea?
@@ -93,7 +93,7 @@ export type AlgorithmDefinition =
 function isHashedKeyAlgorithm(
   // deno-lint-ignore no-explicit-any
   algorithm: Record<string, any>,
-): algorithm is HmacAlgorithm | RsaAlgorithm | PsAlgorithm {
+): algorithm is HmacAlgorithm | RsaAlgorithm | PssAlgorithm {
   return isString(algorithm.hash?.name);
 }
 
