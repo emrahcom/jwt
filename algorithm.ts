@@ -1,4 +1,4 @@
-/*
+/**
  * This module contains types and functions related with cryptographic
  * algorithms.
  * @module
@@ -6,7 +6,7 @@
 
 import { isNotNull, isString } from "./util.ts";
 
-/*
+/**
  * JSW §1: Cryptographic algorithms and identifiers for use with this specification
  * are described in the separate JSON Web Algorithms (JWA) specification:
  * https://www.rfc-editor.org/rfc/rfc7518
@@ -71,7 +71,7 @@ function isEcKeyAlgorithm(
   return isString(algorithm.namedCurve);
 }
 
-/*
+/**
  * Verifies if the algorithm of `key` matches the given algorithm `alg`
  */
 export function verify(alg: Algorithm, key: CryptoKey | null): boolean {
@@ -96,7 +96,7 @@ export function verify(alg: Algorithm, key: CryptoKey | null): boolean {
   }
 }
 
-/*
+/**
  * Returns the algorithm definition for the given `alg`
  */
 export function getAlgorithm(alg: Algorithm): AlgorithmDefinition {
