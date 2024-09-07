@@ -1,3 +1,9 @@
+/*
+ * This module contains types and functions related with cryptographic
+ * algorithms.
+ * @module
+ */
+
 import { isNotNull, isString } from "./util.ts";
 
 /*
