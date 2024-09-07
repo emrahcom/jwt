@@ -36,23 +36,23 @@ export type Algorithm =
   // | "ES512" //is not yet supported.
   | "none";
 
-interface HmacAlgorithm {
+export interface HmacAlgorithm {
   name: "HMAC";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
 }
 
-interface RsaAlgorithm {
+export interface RsaAlgorithm {
   name: "RSASSA-PKCS1-v1_5";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
 }
 
-interface PsAlgorithm {
+export interface PsAlgorithm {
   name: "RSA-PSS";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
   saltLength: number;
 }
 
-interface EcdsaAlgorithm {
+export interface EcdsaAlgorithm {
   name: "ECDSA";
   hash: { name: "SHA-256" | "SHA-384" | "SHA-512" };
   namedCurve: "P-256" | "P-384";
