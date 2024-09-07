@@ -42,7 +42,7 @@ const keyHS512 = await crypto.subtle.importKey(
   ["sign", "verify"],
 );
 
-const keyRS256 = await window.crypto.subtle.generateKey(
+const keyRS256 = await crypto.subtle.generateKey(
   {
     name: "RSASSA-PKCS1-v1_5",
     modulusLength: 4096,
@@ -52,7 +52,7 @@ const keyRS256 = await window.crypto.subtle.generateKey(
   true,
   ["verify", "sign"],
 );
-const keyRS384 = await window.crypto.subtle.generateKey(
+const keyRS384 = await crypto.subtle.generateKey(
   {
     name: "RSASSA-PKCS1-v1_5",
     modulusLength: 4096,
@@ -62,7 +62,7 @@ const keyRS384 = await window.crypto.subtle.generateKey(
   true,
   ["verify", "sign"],
 );
-const keyRS512 = await window.crypto.subtle.generateKey(
+const keyRS512 = await crypto.subtle.generateKey(
   {
     name: "RSASSA-PKCS1-v1_5",
     modulusLength: 4096,
@@ -73,7 +73,7 @@ const keyRS512 = await window.crypto.subtle.generateKey(
   ["verify", "sign"],
 );
 
-const keyPS256 = await window.crypto.subtle.generateKey(
+const keyPS256 = await crypto.subtle.generateKey(
   {
     name: "RSA-PSS",
     // Consider using a 4096-bit key for systems that require long-term security
@@ -85,7 +85,7 @@ const keyPS256 = await window.crypto.subtle.generateKey(
   ["sign", "verify"],
 );
 
-const keyPS384 = await window.crypto.subtle.generateKey(
+const keyPS384 = await crypto.subtle.generateKey(
   {
     name: "RSA-PSS",
     // Consider using a 4096-bit key for systems that require long-term security
@@ -97,7 +97,7 @@ const keyPS384 = await window.crypto.subtle.generateKey(
   ["sign", "verify"],
 );
 
-const keyPS512 = await window.crypto.subtle.generateKey(
+const keyPS512 = await crypto.subtle.generateKey(
   {
     name: "RSA-PSS",
     // Consider using a 4096-bit key for systems that require long-term security
@@ -109,7 +109,7 @@ const keyPS512 = await window.crypto.subtle.generateKey(
   ["sign", "verify"],
 );
 
-const keyES256 = await window.crypto.subtle.generateKey(
+const keyES256 = await crypto.subtle.generateKey(
   {
     name: "ECDSA",
     namedCurve: "P-256",
@@ -118,7 +118,7 @@ const keyES256 = await window.crypto.subtle.generateKey(
   ["sign", "verify"],
 );
 
-const keyES384 = await window.crypto.subtle.generateKey(
+const keyES384 = await crypto.subtle.generateKey(
   {
     name: "ECDSA",
     namedCurve: "P-384",
@@ -128,7 +128,7 @@ const keyES384 = await window.crypto.subtle.generateKey(
 );
 
 // P-521 is not yet supported.
-// const keyES512 = await window.crypto.subtle.generateKey(
+// const keyES512 = await crypto.subtle.generateKey(
 // {
 // name: "ECDSA",
 // namedCurve: "P-521",
