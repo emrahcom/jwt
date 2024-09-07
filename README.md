@@ -66,3 +66,9 @@ const exp = getNumericDate(new Date("2025-07-01"));
 // One hour from now:
 const nbf = getNumericDate(60 * 60);
 ```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+This project is a fork of [Zaubrik/djwt](https://github.com/Zaubrik/djwt)
