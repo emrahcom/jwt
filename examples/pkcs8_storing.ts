@@ -1,4 +1,4 @@
-import { decodeBase64Url, encodeBase64Url } from "jsr:@std/encoding/base64url";
+import { decodeBase64, encodeBase64 } from "jsr:@std/encoding";
 
 /*
   Import a PEM encoded RSA private key, to use for RSA-PSS signing.
@@ -7,13 +7,13 @@ import { decodeBase64Url, encodeBase64Url } from "jsr:@std/encoding/base64url";
   */
 function importPrivateKey(pem: string) {
   // fetch the part of the PEM string between header and footer
-  const pemHeader = "-----BEGIN PRIVATE KEY-----";
-  const pemFooter = "-----END PRIVATE KEY-----";
+  const pemHeader = "-----BEGIN PRIVATE KEY-----\n";
+  const pemFooter = "\n-----END PRIVATE KEY-----";
   const pemContents = pem.substring(
     pemHeader.length,
     pem.length - pemFooter.length,
   );
-  const binaryDer = decodeBase64Url(pemContents.trim());
+  const binaryDer = decodeBase64(pemContents);
   return crypto.subtle.importKey(
     "pkcs8",
     binaryDer,
@@ -28,7 +28,7 @@ function importPrivateKey(pem: string) {
 
 async function generatePemFromPrivateCryptoKey(privateKey: CryptoKey) {
   const exportedKey = await crypto.subtle.exportKey("pkcs8", privateKey);
-  const exportedAsBase64 = encodeBase64Url(exportedKey);
+  const exportedAsBase64 = encodeBase64(exportedKey);
   return `-----BEGIN PRIVATE KEY-----\n${exportedAsBase64}\n-----END PRIVATE KEY-----`;
 }
 
