@@ -7,8 +7,8 @@ import { decodeBase64, encodeBase64 } from "jsr:@std/encoding";
   */
 function importPrivateKey(pem: string) {
   // fetch the part of the PEM string between header and footer
-  const pemHeader = "-----BEGIN PRIVATE KEY-----\n";
-  const pemFooter = "\n-----END PRIVATE KEY-----";
+  const pemHeader = "-----BEGIN PRIVATE KEY-----";
+  const pemFooter = "-----END PRIVATE KEY-----";
   const pemContents = pem.substring(
     pemHeader.length,
     pem.length - pemFooter.length,
