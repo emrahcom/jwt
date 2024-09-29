@@ -1,12 +1,12 @@
 {
   "name": "@emrahcom/jwt",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "exports": {
     ".": "./mod.ts",
     "./algorithm": "./algorithm.ts"
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@^1.0.4",
-    "@std/encoding": "jsr:@std/encoding@^1.0.4"
+    "@std/assert": "jsr:@std/assert@^1.0.6",
+    "@std/encoding": "jsr:@std/encoding@^1.0.5"
   }
 }
