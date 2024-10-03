@@ -67,6 +67,24 @@ const exp = getNumericDate(new Date("2025-07-01"));
 const nbf = getNumericDate(60 * 60);
 ```
 
+## Algorithms
+
+The following signature and MAC algorithms have been implemented:
+
+- HS256 (HMAC SHA-256)
+- HS384 (HMAC SHA-384)
+- HS512 (HMAC SHA-512)
+- RS256 (RSASSA-PKCS1-v1_5 SHA-256)
+- RS384 (RSASSA-PKCS1-v1_5 SHA-384)
+- RS512 (RSASSA-PKCS1-v1_5 SHA-512)
+- PS256 (RSASSA-PSS SHA-256)
+- PS384 (RSASSA-PSS SHA-384)
+- PS512 (RSASSA-PSS SHA-512)
+- ES256 (ECDSA using P-256 and SHA-256)
+- ES384 (ECDSA using P-384 and SHA-384)
+- ES512 (ECDSA using P-521 and SHA-512) (Not supported yet!)
+- none ([_Unsecured JWTs_](https://tools.ietf.org/html/rfc7519#section-6)).
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file
