@@ -16,6 +16,21 @@ const key = await crypto.subtle.generateKey(
 );
 ```
 
+Or to generate a **secure** `CryptoKey` using a secret.
+
+```typescript
+const secret = "MYSECRET";
+const encoder = new TextEncoder();
+const keyData = encoder.encode(secret);
+const key = await crypto.subtle.importKey(
+  "raw",
+  keyData,
+  { name: "HMAC", hash: "SHA-512" },
+  true,
+  ["sign", "verify"],
+);
+```
+
 ### create
 
 Takes `Header`, `Payload` and `CryptoKey` and returns the url-safe encoded
