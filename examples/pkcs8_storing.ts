@@ -13,7 +13,8 @@ function importPrivateKey(pem: string) {
     pemHeader.length,
     pem.length - pemFooter.length,
   );
-  const binaryDer = decodeBase64(pemContents);
+  const pemStr = pemContents.replace(/\n/g, '');
+  const binaryDer = decodeBase64(pemStr);
   return crypto.subtle.importKey(
     "pkcs8",
     binaryDer,
