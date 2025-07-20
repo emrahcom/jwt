@@ -29,6 +29,7 @@ const payload: Payload = {
   admin: true,
   iat: getNumericDate(0),
 };
+
 const header: Header = {
   alg: "RS384",
   typ: "JWT",
@@ -36,16 +37,19 @@ const header: Header = {
 
 async function handleRequest(request: Request) {
   if (request.method === "GET") {
-    return new Response(await create(header, payload, privateKey) + "\n");
-  } else {
+    const jwt = await create(header, payload, privateKey);
+    return new Response(jwt + "\n");
+  } else if (request.method === "POST") {
     try {
       const jwt = await request.text();
-      const payload = await verify(jwt, publicKey);
-      return Response.json(payload);
+      const verifiedPayload = await verify(jwt, publicKey);
+      return Response.json(verifiedPayload);
     } catch {
       return new Response("Invalid JWT\n", { status: 401 });
     }
   }
+
+  return new Response("Method not allowed\n", { status: 405 });
 }
 
 Deno.serve(handleRequest);
