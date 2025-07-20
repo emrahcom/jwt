@@ -20,6 +20,7 @@ function importPrivateKey(pem: string) {
   );
   const pemStr = pemContents.replace(/\n/g, "");
   const binaryDer = decodeBase64(pemStr);
+
   return crypto.subtle.importKey(
     "pkcs8",
     binaryDer,
@@ -32,13 +33,13 @@ function importPrivateKey(pem: string) {
   );
 }
 
-async function generatePemFromPrivateCryptoKey(privateKey: CryptoKey) {
+async function exportKeyToPem(privateKey: CryptoKey) {
   const exportedKey = await crypto.subtle.exportKey("pkcs8", privateKey);
   const exportedAsBase64 = encodeBase64(exportedKey);
   return `-----BEGIN PRIVATE KEY-----\n${exportedAsBase64}\n-----END PRIVATE KEY-----`;
 }
 
-const keyRS384CryptoKeyPair = await crypto.subtle.generateKey(
+const keyPair = await crypto.subtle.generateKey(
   {
     name: "RSASSA-PKCS1-v1_5",
     modulusLength: 4096,
@@ -49,20 +50,19 @@ const keyRS384CryptoKeyPair = await crypto.subtle.generateKey(
   ["verify", "sign"],
 );
 
-const { privateKey } = keyRS384CryptoKeyPair;
+const { privateKey } = keyPair;
+
 console.log("Generated crypto key:");
 console.log(privateKey);
 console.log();
 
-const pemExported = await generatePemFromPrivateCryptoKey(privateKey);
-
+const pemExported = await exportKeyToPem(privateKey);
 const importedCryptoKey = await importPrivateKey(pemExported);
+
 console.log("Imported crypto key from PEM:");
 console.log(importedCryptoKey);
 console.log();
 
-const areEqualKeys =
-  pemExported === await generatePemFromPrivateCryptoKey(importedCryptoKey);
-
+const areEqualKeys = pemExported === await exportKeyToPem(importedCryptoKey);
 console.log("Are PEMs equal:");
 console.log(areEqualKeys);
