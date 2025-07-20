@@ -66,8 +66,6 @@ import { decode } from "jsr:@emrahcom/jwt";
 const [header, payload, signature] = decode(jwt);
 ```
 
-See also [examples](examples).
-
 ### getNumericDate
 
 This helper function simplifies setting a
@@ -83,6 +81,8 @@ const exp = getNumericDate(new Date("2025-07-01"));
 // One hour from now:
 const nbf = getNumericDate(60 * 60);
 ```
+
+See also [examples](examples).
 
 ## Algorithms
 
