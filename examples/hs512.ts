@@ -17,10 +17,12 @@ const key = await crypto.subtle.generateKey(
   true,
   ["sign", "verify"],
 );
+
 const payload: Payload = {
   iss: "joe",
   exp: getNumericDate(300),
 };
+
 const header: Header = {
   alg: "HS512",
   typ: "JWT",
@@ -28,16 +30,19 @@ const header: Header = {
 
 async function handleRequest(request: Request) {
   if (request.method === "GET") {
-    return new Response(await create(header, payload, key) + "\n");
-  } else {
+    const jwt = await create(header, payload, key);
+    return new Response(jwt + "\n");
+  } else if (request.method === "POST") {
     try {
       const jwt = await request.text();
-      const payload = await verify(jwt, key);
-      return Response.json(payload);
+      const verifiedPayload = await verify(jwt, key);
+      return Response.json(verifiedPayload);
     } catch {
       return new Response("Invalid JWT\n", { status: 401 });
     }
   }
+
+  return new Response("Method not allowed\n", { status: 405 });
 }
 
 Deno.serve(handleRequest);
