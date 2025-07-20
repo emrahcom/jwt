@@ -1,3 +1,8 @@
+// -----------------------------------------------------------------------------
+// Run:
+//   deno run pkcs8_storing.ts
+// -----------------------------------------------------------------------------
+
 import { decodeBase64, encodeBase64 } from "jsr:@std/encoding";
 
 /*
@@ -45,12 +50,19 @@ const keyRS384CryptoKeyPair = await crypto.subtle.generateKey(
 );
 
 const { privateKey } = keyRS384CryptoKeyPair;
+console.log("Generated crypto key:");
+console.log(privateKey);
+console.log();
 
 const pemExported = await generatePemFromPrivateCryptoKey(privateKey);
 
 const importedCryptoKey = await importPrivateKey(pemExported);
+console.log("Imported crypto key from PEM:");
+console.log(importedCryptoKey);
+console.log();
 
 const areEqualKeys =
   pemExported === await generatePemFromPrivateCryptoKey(importedCryptoKey);
 
+console.log("Are PEMs equal:");
 console.log(areEqualKeys);
