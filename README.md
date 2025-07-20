@@ -66,6 +66,8 @@ import { decode } from "jsr:@emrahcom/jwt";
 const [header, payload, signature] = decode(jwt);
 ```
 
+See also [examples](examples).
+
 ### getNumericDate
 
 This helper function simplifies setting a
