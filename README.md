@@ -1,6 +1,6 @@
 # JWT
 
-Create and verify JSON Web Tokens (JSON).
+Create and verify JSON Web Tokens (JWT).
 
 ## API
 
