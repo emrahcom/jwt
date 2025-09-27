@@ -13,7 +13,7 @@ export async function verify(
   return isNull(key) ? signature.length === 0 : await crypto.subtle.verify(
     getAlgorithm(alg),
     key,
-    signature,
+    signature as BufferSource,
     encoder.encode(signingInput),
   );
 }
