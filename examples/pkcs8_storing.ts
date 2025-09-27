@@ -3,11 +3,12 @@
 //   deno run pkcs8_storing.ts
 // -----------------------------------------------------------------------------
 
+// Check the commented import option if you dont have deno.json
 import { decodeBase64, encodeBase64 } from "@std/encoding";
 
 // If you dont have deno.json and @std/encoding is not in its import list
 // then use these import line:
-// import { decodeBase64, encodeBase64 } from "jsr:@std/encoding@^1.0.10";
+//import { decodeBase64, encodeBase64 } from "jsr:@std/encoding@^1.0.10";
 
 /*
   Import a PEM encoded RSA private key, to use for RSA-PSS signing.

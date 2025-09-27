@@ -9,13 +9,14 @@
 //   curl -d "your_jwt" http://0.0.0.0:8000/
 // -----------------------------------------------------------------------------
 
+// Check the commented import options if you dont have deno.json
 import { create, getNumericDate, verify } from "@emrahcom/jwt";
 import type { Header, Payload } from "@emrahcom/jwt";
 
 // If you dont have deno.json and @emrahcom/jwt is not in its import list
 // then use these import lines:
-// import { create, getNumericDate, verify } from "jsr:@emrahcom/jwt@^0.4.6";
-// import type { Header, Payload } from "jsr:@emrahcom/jwt@^0.4.6";
+//import { create, getNumericDate, verify } from "jsr:@emrahcom/jwt@^0.4.6";
+//import type { Header, Payload } from "jsr:@emrahcom/jwt@^0.4.6";
 
 const { privateKey, publicKey } = await crypto.subtle.generateKey(
   {
