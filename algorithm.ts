@@ -5,8 +5,8 @@
  *
  * @example
  * ```ts
- * import { getAlgorithm } from "jsr:@emrahcom/jwt/algorithm";
- * import { type Algorithm } from "jsr:@emrahcom/jwt/algorithm";
+ * import { getAlgorithm } from "@emrahcom/jwt/algorithm";
+ * import { type Algorithm } from "@emrahcom/jwt/algorithm";
  *
  * const alg = "HS256" as Algorithm;
  * console.log(getAlgorithm(alg));
